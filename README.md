@@ -55,7 +55,7 @@ $ img2texture /path/to/source.jpg /path/to/seamless.jpg
 The `--overlap` option determines how much of the image will be used to hide the seams.
 
 For example, the following command uses 25% of the width and 25% of the height 
-of the original image to create an invisible seam.
+of the original image:
 
 ```
 $ img2texture source.jpg seamless.jpg --overlap 0.25 
@@ -83,3 +83,15 @@ The 40% seam.
 ![--overlap 40](docs/3_orion_40_2x2.jpg)
 
 </details>
+
+## --tile
+
+The `--tile` option will create a 2x2 tiled version in addition to the converted image.
+
+The following command will create `seamless.jpg` and `seamless_2x2.jpg`. 
+
+```
+$ img2texture source.jpg seamless.jpg --tile 
+```
+
+All the samples on this page were created with `--tile`.
