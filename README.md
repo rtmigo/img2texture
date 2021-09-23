@@ -4,6 +4,18 @@ Command line utility for converting images to seamless tiles.
 
 The resulting tiles can be used as textures in games, compositing and 3D modeling applications, etc.
 
+### Source image
+![Source image](docs/1_orion_src.jpg)
+
+### Source tiled 
+![Source tiled](docs/1_orion_src_2x2.jpg)
+
+### Converted image
+![Converted image](docs/2_orion_seamless.jpg)
+
+### Converted tiled
+![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
+
 # Install
 
 ```
@@ -16,14 +28,3 @@ $ pip3 install https://github.com/rtmigo/img2texture_py
 $ img2texture /path/to/source.jpg /path/to/seamless_result.jpg 
 ```
 
-### Source image
-![Text](docs/1_orion_src.jpg)
-
-### Source tiled 
-![Text](docs/1_orion_src_2x2.jpg)
-
-### Converted image
-![Text](docs/2_orion_seamless.jpg)
-
-### Converted tiled
-![Text](docs/2_orion_seamless.jpg2x2.jpg)
