@@ -17,6 +17,7 @@ name = "img2texture"
 constants = load_module_dict(f'{name}/_constants.py')
 
 readme = (Path(__file__).parent / 'README.md').read_text(encoding="utf-8")
+readme = "#"+readme.partition('\n#')[-1]
 
 setup(
     name=name,

@@ -5,17 +5,28 @@ from enum import Enum
 from pathlib import Path
 
 from img2texture import img2tex
-from ._constants import __version__ as version, __copyright__ as copyright
+import img2texture._constants as constants
+
+# import __version__ as version, __copyright__ as copyright
 from ._tiling import tile
 
 
 def print_version():
-    print(f'img2texture {version} {copyright}')
+    print(f'img2texture {constants.__version__} {constants.__copyright__}')
 
 
 class Mode(Enum):
     both = "both"
     none = "none"
+
+
+def confirm(message: str) -> bool:
+    while True:
+        answer = input(f"{message} (y/n) ").upper()
+        if answer.startswith("Y"):
+            return True
+        if answer.startswith("N"):
+            return False
 
 
 class ParsedArgs:
@@ -78,10 +89,20 @@ def tile_filename(texture: Path) -> Path:
 
 def cli():
     args = ParsedArgs()
+
+    if args.target.exists():
+        if not confirm(f"File '{args.target.name}' exists. Overwrite?"):
+            exit(3)
+        os.remove(args.target)
+
     img2tex(args.source, args.target, pct=args.mix)
+
     if args.tile:
         tile_src = args.target if args.mode != Mode.none else args.source
         tile_fn = tile_filename(tile_src)
+        if not confirm(f"File '{tile_fn}' exists. Overwrite?"):
+            exit(3)
+
         if tile_fn.exists():
             os.remove(tile_fn)
         tile(tile_src, tile_fn, horizontal=2, vertical=2)
