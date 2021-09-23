@@ -1,4 +1,9 @@
-# [img2texture](https://github.com/rtmigo/img2texture_py#readme) (DRAFT)
+[![Generic badge](https://img.shields.io/badge/status-draft-red.svg)](#)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/img2texture.svg)](https://pypi.python.org/pypi/img2texture/)
+[![Generic badge](https://img.shields.io/badge/Python-3.7+-blue.svg)](#)
+[![Generic badge](https://img.shields.io/badge/OS-Windows%20|%20macOS%20|%20Linux-blue.svg)](#)
+
+# [img2texture](https://github.com/rtmigo/img2texture_py#readme)
 
 Command line utility for converting images to seamless tiles.
 
@@ -19,7 +24,7 @@ We cannot use the original image as an endless space background: the seams are v
 
 ### Converted image x4
 
-![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
+![Converted tiled](docs/2_orion_seamless_2x2.jpg)
 
 The result of `img2texture`, in four copies side by side. 
 
@@ -35,7 +40,7 @@ direction. It will feel endless and seamless.
 # Install
 
 ```
-$ pip3 install https://github.com/rtmigo/img2texture_py
+$ pip3 install img2texture
 ```
 
 # Run

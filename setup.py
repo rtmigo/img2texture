@@ -1,8 +1,7 @@
 from pathlib import Path
 
 from setuptools import setup, find_packages
-# 178956970
-# 324000000
+
 
 def load_module_dict(filename: str) -> dict:
     import importlib.util as ilu
@@ -36,7 +35,7 @@ setup(
     long_description=readme,
     long_description_content_type='text/markdown',
 
-    license="MIT",
+    license=constants['__license__'],
 
     entry_points={
         'console_scripts': [
@@ -46,13 +45,14 @@ setup(
     keywords="photo image texture tile seamless".split(),
 
     classifiers=[
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: MIT License',
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Environment :: Console",
         "Typing :: Typed",
-        "Topic :: Software Development :: Build Tools",
+        "Topic :: Scientific/Engineering :: Image Processing",
+        "Topic :: Multimedia :: Graphics",
         "Operating System :: POSIX",
         "Operating System :: Microsoft :: Windows"
     ],

@@ -3,10 +3,13 @@
 
 from pathlib import Path
 
-from PIL import Image
+from ._common import Image  # importing with tweaked options
 
 
-def tile(source: Path, target: Path, horizontal: int = 3, vertical: int = 3):
+def tile(source: Path, target: Path,
+         horizontal: int = 3, vertical: int = 3) -> None:
+    """Merges multiple copies of `source` image into the `target` image
+    side-by-side."""
     image = Image.open(source)
 
     w, h = image.size
