@@ -1,4 +1,4 @@
-tests/data/out/
+tests/data/out/*
 
 adobe_ssh_hostkey.txt
 
