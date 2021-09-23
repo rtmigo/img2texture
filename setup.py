@@ -32,6 +32,7 @@ setup(
     python_requires='>=3.7',
     install_requires=["pillow"],
 
+    description="Command line utility for converting images to seamless tiles.",
     long_description=readme,
     long_description_content_type='text/markdown',
 
@@ -42,7 +43,7 @@ setup(
             'img2texture = img2texture:cli',
         ]},
 
-    keywords="".split(),
+    keywords="photo image texture tile seamless".split(),
 
     classifiers=[
         'License :: OSI Approved :: BSD License',
