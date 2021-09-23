@@ -8,19 +8,19 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
   <summary>Sample images</summary>
 
 
-
+### Original image (merged four duplicates)
 
 ![Source tiled](docs/1_orion_src_2x2.jpg)
 
-Four copies of original image side by side (Orion galaxy by NASA/ESA).
+Orion galaxy by NASA/ESA.
 
-We cannot use this image of Orion as an endless background: the seams are visible.
+We cannot use the original image of Orion as an endless background: the seams are visible.
 
-### Converted image
+### Converted image (merged four duplicates)
 
 ![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
 
-Four copies of the converted image: result of  `img2texture`. 
+Converted image: result of  `img2texture`. 
 
 Each image is slightly reduced in size and the edges are modified with 
 alpha-blending.
