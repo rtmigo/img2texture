@@ -15,11 +15,13 @@ def load_module_dict(filename: str) -> dict:
 
 name = "img2texture"
 
+constants = load_module_dict(f'{name}/_constants.py')
+
 readme = (Path(__file__).parent / 'README.md').read_text(encoding="utf-8")
 
 setup(
     name=name,
-    version="0.2.0",
+    version=constants['__version__'],
 
     author="Artyom Galkin",
     author_email="ortemeo@gmail.com",
