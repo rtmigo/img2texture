@@ -1,4 +1,3 @@
-[![Generic badge](https://img.shields.io/badge/status-draft-red.svg)](#)
 [![PyPI version shields.io](https://img.shields.io/pypi/v/img2texture.svg)](https://pypi.python.org/pypi/img2texture/)
 [![Generic badge](https://img.shields.io/badge/Python-3.7+-blue.svg)](#)
 [![Generic badge](https://img.shields.io/badge/OS-Windows%20|%20macOS%20|%20Linux-blue.svg)](#)
@@ -45,7 +44,53 @@ $ pip3 install img2texture
 
 # Run
 
+Create new `seamless.jpg` from `source.jpg`.
 ```
-$ img2texture /path/to/source.jpg /path/to/seamless_result.jpg 
+$ img2texture /path/to/source.jpg /path/to/seamless.jpg 
 ```
 
+## --overlap
+
+The `--overlap` option determines how much of the image will be used to hide the seams.
+
+For example, the following command uses 25% of the width and 25% of the height 
+of the original image:
+
+```
+$ img2texture source.jpg seamless.jpg --overlap 0.25 
+```
+
+Increasing the value makes the seam less visible. However, the image becomes smaller.
+
+<details>
+  <summary>Sample images</summary>
+
+:warning: If images don't load, check out the [original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).
+
+### --overlap 0.05
+
+The 5% seam.
+
+![--overlap 0.05](docs/3_orion_05_2x2.jpg)
+
+
+
+### --overlap 0.4
+
+The 40% seam.
+
+![--overlap 40](docs/3_orion_40_2x2.jpg)
+
+</details>
+
+## --tile
+
+The `--tile` option will create a 2x2 tiled version in addition to the converted image.
+
+The following command will create `seamless.jpg` and `seamless_2x2.jpg`. 
+
+```
+$ img2texture source.jpg seamless.jpg --tile 
+```
+
+All the samples on this page were created with `--tile`.
