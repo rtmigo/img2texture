@@ -1,17 +1,10 @@
-# Blenderman
+# img2texture
 
-Blender 3D automation scripts.
+Draft.
 
-Project started 2021-09-12.
 
 # Install
 
 ```
-$ pip3 install git+https://github.com/rtmigo/blenderman_py#egg=blenderman
-```
-
-# Update regardless of version (PowerShell)
-
-```
-pip3 uninstall blenderman -y ; pip3 install git+https://github.com/rtmigo/blenderman_py
+$ pip3 install https://github.com/rtmigo/img2texture_py
 ```
