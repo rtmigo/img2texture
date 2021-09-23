@@ -15,7 +15,7 @@ This is an image of the Orion galaxy from NASA / ESA.
 
 ### Source tiled 
 
-It will not work to turn it into an endless space background: the seams will be visible.
+The original image cannot be used as an endless background: the seams are visible.
 
 ![Source tiled](docs/1_orion_src_2x2.jpg)
 
@@ -27,9 +27,10 @@ This is the result of `img2texture`. The image is slightly reduced in size and t
 
 ### Converted tiled
 
-The seams between the tiles are no longer obvious.
+The seams between the tiles are disappeared.
 
 ![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
+
 
 </details>
 
