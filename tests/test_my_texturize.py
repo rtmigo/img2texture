@@ -3,9 +3,9 @@ from pathlib import Path
 
 from PIL import Image
 
-from tests.helpers import temp_file_path, file_md5
 from img2texture.texturizing import gradient256h, Mixer
 from img2texture.tiling import tile
+from tests.helpers import temp_file_path, file_md5
 
 
 class TestGradient(unittest.TestCase):
