@@ -6,14 +6,14 @@ import os
 import unittest
 from pathlib import Path
 
-from tests.helpers import file_md5
+from tests.helpers import file_md5, temp_file_path
 from img2texture._tiling import tile
 
 
 class TestMakeTiles(unittest.TestCase):
     def test(self):
         src = Path(__file__).parent / "data" / "sand.png"
-        dst = Path(__file__).parent / "data" / "out" / "sand-9x9.tmp.png"
+        dst = temp_file_path("sand-9x9.tmp.png")
 
         assert "tmp" in str(dst)
         if dst.exists():
