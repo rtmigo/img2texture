@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 from tests.helpers import file_md5
-from textu.tiling import tile
+from img2texture.tiling import tile
 
 
 class TestMakeTiles(unittest.TestCase):

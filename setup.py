@@ -1,7 +1,4 @@
-import datetime
-import os
 from pathlib import Path
-from time import strftime
 
 from setuptools import setup, find_packages
 
@@ -15,7 +12,7 @@ def load_module_dict(filename: str) -> dict:
     return module.__dict__
 
 
-name = "blenderman"
+name = "img2texture"
 
 readme = (Path(__file__).parent / 'README.md').read_text(encoding="utf-8")
 
@@ -25,12 +22,12 @@ setup(
 
     author="Artyom Galkin",
     author_email="ortemeo@gmail.com",
-    url='https://github.com/rtmigo/blenderman_py',
+    url='https://github.com/rtmigo/img2texture_py',
 
-    packages=find_packages(include=['blenderman', 'blenderman.*']),
+    packages=find_packages(include=[name, f'{name}.*']),
 
-    python_requires='>=3.9',
-    install_requires=["fake-bpy-module-2.93", "click", "bgprocess", "dacite"],
+    python_requires='>=3.7',
+    install_requires=["pillow", "click"],
 
     long_description=readme,
     long_description_content_type='text/markdown',
@@ -46,6 +43,7 @@ setup(
 
     classifiers=[
         'License :: OSI Approved :: BSD License',
+        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Environment :: Console",
