@@ -45,7 +45,41 @@ $ pip3 install img2texture
 
 # Run
 
+Create new `seamless.jpg` from `source.jpg`.
 ```
-$ img2texture /path/to/source.jpg /path/to/seamless_result.jpg 
+$ img2texture /path/to/source.jpg /path/to/seamless.jpg 
 ```
 
+## --overlap
+
+The `--overlap` option determines how much of the image will be used to hide the seams.
+
+For example, the following command uses 25% of the width and 25% of the height 
+of the original image to create an invisible seam.
+
+```
+$ img2texture source.jpg seamless.jpg --overlap 0.25 
+```
+
+Increasing the value makes the seam less visible. However, the image becomes smaller.
+
+<details>
+  <summary>Sample images</summary>
+
+:warning: If images don't load, check out the [original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).
+
+### --overlap 0.05
+
+The 5% seam.
+
+![--overlap 0.05](docs/3_orion_05_2x2.jpg)
+
+
+
+### --overlap 0.4
+
+The 40% seam.
+
+![--overlap 40](docs/3_orion_40_2x2.jpg)
+
+</details>

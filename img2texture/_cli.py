@@ -37,7 +37,7 @@ class ParsedArgs:
 
         parser = argparse.ArgumentParser()
 
-        parser.add_argument("-m", "--mix",
+        parser.add_argument("-o", "--overlap",
                             type=float,
                             default=0.2)
         parser.add_argument("source",
@@ -69,7 +69,7 @@ class ParsedArgs:
 
     @property
     def mix(self) -> float:
-        return self._parsed.mix
+        return self._parsed.overlap
 
     @property
     def mode(self) -> Mode:
@@ -100,7 +100,7 @@ def cli():
     if args.tile:
         tile_src = args.target if args.mode != Mode.none else args.source
         tile_fn = tile_filename(tile_src)
-        if not confirm(f"File '{tile_fn}' exists. Overwrite?"):
+        if tile_fn.exists() and not confirm(f"File '{tile_fn}' exists. Overwrite?"):
             exit(3)
 
         if tile_fn.exists():
