@@ -9,23 +9,28 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
 
 ### Source image
 
+This is an image of the Orion galaxy from NASA / ESA.
+
 ![Source image](docs/1_orion_src.jpg) 
 
 ### Source tiled 
+
+It will not work to turn it into an endless space background: the seams will be visible.
 
 ![Source tiled](docs/1_orion_src_2x2.jpg)
 
 ### Converted image
 
-![Converted image](docs/2_orion_seamless.jpg)
-
 This is the result of `img2texture`. The image is slightly reduced in size and the edges are modified.
+
+![Converted image](docs/2_orion_seamless.jpg)
 
 ### Converted tiled
 
+The seams between the tiles are no longer obvious.
+
 ![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
 
-The seams between the tiles are no longer obvious.
 </details>
 
 # Install
