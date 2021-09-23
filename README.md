@@ -21,7 +21,8 @@ The original image cannot be used as an endless background: the seams are visibl
 
 ### Converted image
 
-This is the result of `img2texture`. The image is slightly reduced in size and the edges are modified.
+This is the result of `img2texture`. The image is slightly reduced in size and 
+the edges are modified with simple alpha-blending.
 
 ![Converted image](docs/2_orion_seamless.jpg)
 
