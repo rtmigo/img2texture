@@ -15,9 +15,11 @@ This is an image of the Orion galaxy from NASA / ESA.
 
 ### Four source images side by side  
 
-The original image cannot be used as an endless background: the seams are visible.
+
 
 ![Source tiled](docs/1_orion_src_2x2.jpg)
+
+It cannot be used as an endless background: the seams are visible.
 
 ### Converted image
 
