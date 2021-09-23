@@ -1,9 +1,15 @@
 # SPDX-FileCopyrightText: (c) 2021 Artyom Galkin <github.com/rtmigo>
 # SPDX-License-Identifier: MIT
+
 from pathlib import Path
 from typing import Tuple
 
 from PIL import Image
+
+# preventing Image.DecompressionBombError: Image size (324000000 pixels)
+# exceeds limit of 178956970 pixels, could be decompression bomb DOS attack.
+# We just open a large file and are not afraid of it
+Image.MAX_IMAGE_PIXELS = None
 
 
 def gradient256h(size: Tuple[int, int], lr=True) -> Image:
@@ -109,4 +115,6 @@ def img2tex(src: Path, dst: Path, pct=0.25):
 
     mixer2 = Mixer(result, pct=pct)
     result = mixer2.make_seamless_v()
+    if result.mode != "RGB":
+        result = result.convert("RGB")
     result.save(dst)
