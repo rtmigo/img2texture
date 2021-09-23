@@ -24,7 +24,7 @@ It cannot be used as an endless background: the seams are visible.
 ### Converted image
 
 This is the result of `img2texture`. The image is slightly reduced in size and 
-the edges are modified with simple alpha-blending.
+the edges are modified with alpha-blending.
 
 ![Converted image](docs/2_orion_seamless.jpg)
 
@@ -36,7 +36,7 @@ the edges are modified with simple alpha-blending.
 
 The seams between the tiles are disappeared.
 
-This indicated that with the proper magnification, the converted image can be panned in any 
+This indicates that the converted image can be tiled and panned in any 
 direction. It will feel endless and seamless.
 
 
