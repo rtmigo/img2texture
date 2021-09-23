@@ -7,7 +7,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from img2texture._texturizing import gradient256h, Mixer
+from img2texture._texturizing import horizontal_gradient_256_scaled, Mixer
 from img2texture._tiling import tile
 from tests.helpers import temp_file_path, file_md5
 
@@ -16,7 +16,7 @@ class TestGradient(unittest.TestCase):
     def test(self):
         w = 100
         h = 50
-        result = gradient256h((100, 50))
+        result = horizontal_gradient_256_scaled((100, 50))
         self.assertEqual(result.size[0], w)
         self.assertEqual(result.size[1], h)
 
