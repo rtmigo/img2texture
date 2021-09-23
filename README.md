@@ -4,6 +4,9 @@ Command line utility for converting images to seamless tiles.
 
 The resulting tiles can be used as textures in games, compositing and 3D modeling applications, etc.
 
+<details>
+  <summary>Sample images</summary>
+
 ### Source image
 ![Source image](docs/1_orion_src.jpg)
 
@@ -15,6 +18,7 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
 
 ### Converted tiled
 ![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
+</details>
 
 # Install
 
