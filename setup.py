@@ -27,7 +27,7 @@ setup(
     packages=find_packages(include=[name, f'{name}.*']),
 
     python_requires='>=3.7',
-    install_requires=["pillow", "click"],
+    install_requires=["pillow"],
 
     long_description=readme,
     long_description_content_type='text/markdown',
@@ -36,7 +36,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'bman = blenderman:cli',
+            'img2texture = img2texture:cli',
         ]},
 
     keywords="".split(),

@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: (c) 2021 Artyom Galkin <github.com/rtmigo>
 # SPDX-License-Identifier: MIT
-
-
+from pathlib import Path
 from typing import Tuple
 
 from PIL import Image
@@ -28,16 +27,6 @@ def gradient256v(size: Tuple[int, int], lr=True) -> Image:
 
     return gradient.resize(size)
 
-
-# исходное изображение:
-# XXXXXXX
-#
-# делим его на такие области
-# aAXXXBb
-#
-# и совмещаем вот так:
-# b   a
-# AXXXB
 
 class Mixer:
     def __init__(self, source: Image, pct=1.0 / 3):
@@ -112,3 +101,12 @@ class Mixer:
                           comp.size[0],
                           comp.size[1] - self.vertical_stripe_height))
         return comp
+
+
+def img2tex(src: Path, dst: Path, pct=0.25):
+    mixer1 = Mixer(Image.open(src), pct=pct)
+    result = mixer1.make_seamless_h()
+
+    mixer2 = Mixer(result, pct=pct)
+    result = mixer2.make_seamless_v()
+    result.save(dst)

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: (c) 2021 Artyom Galkin <github.com/rtmigo>
+# SPDX-License-Identifier: MIT
+
+
 import unittest
 from pathlib import Path
 
@@ -35,6 +39,8 @@ class TestMyTextu(unittest.TestCase):
         mixer2 = Mixer(result, pct=pct)
         result = mixer2.make_seamless_v()
         result.save(dst)
+
+        self.assertEqual(file_md5(dst), 'c9c4d278498050e99c1df3994efc3bcd')
 
         tile(dst, dst_tiled)
 
