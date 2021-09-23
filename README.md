@@ -12,7 +12,7 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
 
 ![Source tiled](docs/1_orion_src_2x2.jpg)
 
-Orion galaxy by NASA/ESA.
+Orion galaxy by NASA/ESA, in four copies side by side. 
 
 We cannot use the original image as an endless space background: the seams are visible.
 
@@ -20,7 +20,7 @@ We cannot use the original image as an endless space background: the seams are v
 
 ![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
 
-This shows the result of `img2texture`, for clarity in four copies side by side. 
+The result of `img2texture`, in four copies side by side. 
 
 The image is slightly reduced in size and the edges are modified with 
 alpha-blending.

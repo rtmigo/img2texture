@@ -12,12 +12,18 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 
-# todo Find a way to add dithering noise to 8-bit
-# It looks like in 2021 Pillow is not able to convert color depth at all.
-# And the best ideas from the discussion boil down to leaving the top bits of
-# the colors, without any plans for dithering. Therefore, we cannot just create
-# a 32-bit gradient with good conversion before blending.
-# https://github.com/python-pillow/Pillow/issues/3011
+# todo Find a way to add dithering noise to 8-bit grading
+#
+# It looks like in 2021 Pillow cannot alpha-blend 16-bit or 32-bit images.
+# So we need to keep our gradient mask in 8 bit.
+#
+# To avoid banding, we may want to create 16 or 32 bit gradient, and then
+# convert it to dithered 8-bit version. But it seems, Pillow cannot do such
+# conversion either (https://github.com/python-pillow/Pillow/issues/3011)
+#
+# So all colors are 8 bit now. Maybe we should find a way to add some random
+# noise to out gradient. But Pillow will not create noise, we need to generate
+# it pixel-by-pixel, and probably not in native Python
 
 
 def horizontal_gradient_256_scaled(size: Tuple[int, int],
