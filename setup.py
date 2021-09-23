@@ -1,8 +1,7 @@
 from pathlib import Path
 
 from setuptools import setup, find_packages
-# 178956970
-# 324000000
+
 
 def load_module_dict(filename: str) -> dict:
     import importlib.util as ilu
@@ -32,29 +31,32 @@ setup(
     python_requires='>=3.7',
     install_requires=["pillow"],
 
+    description="Command line utility for converting images to seamless tiles.",
     long_description=readme,
     long_description_content_type='text/markdown',
 
-    license="MIT",
+    license=constants['__license__'],
 
     entry_points={
         'console_scripts': [
             'img2texture = img2texture:cli',
         ]},
 
-    keywords="".split(),
+    keywords="photo image texture tile seamless".split(),
 
     classifiers=[
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: MIT License',
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Environment :: Console",
         "Typing :: Typed",
-        "Topic :: Software Development :: Build Tools",
+        "Topic :: Scientific/Engineering :: Image Processing",
+        "Topic :: Multimedia :: Graphics",
         "Operating System :: POSIX",
         "Operating System :: Microsoft :: Windows"
     ],
 
     test_suite="test_unit.suite"
 )
+

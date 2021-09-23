@@ -4,18 +4,28 @@
 from pathlib import Path
 from typing import Tuple
 
-from PIL import Image
-
-# preventing Image.DecompressionBombError: Image size (324000000 pixels)
-# exceeds limit of 178956970 pixels, could be decompression bomb DOS attack.
-# We just open a large file and are not afraid of it
-Image.MAX_IMAGE_PIXELS = None
+from ._common import Image  # importing with tweaked options
 
 
-def gradient256h(size: Tuple[int, int], lr=True) -> Image:
-    gradient = Image.new('L', (256, 1), color=0x00)
+# todo Find a way to add dithering noise to 8-bit grading
+#
+# It looks like in 2021 Pillow cannot alpha-blend 16-bit or 32-bit images.
+# So we need to keep our gradient mask in 8 bit.
+#
+# To avoid banding, we may want to create 16 or 32 bit gradient, and then
+# convert it to dithered 8-bit version. But it seems, Pillow cannot do such
+# conversion either (https://github.com/python-pillow/Pillow/issues/3011)
+#
+# So all colors are 8 bit now. Maybe we should find a way to add some random
+# noise to out gradient. But Pillow will not create noise, we need to generate
+# it pixel-by-pixel, and probably not in native Python
+
+
+def horizontal_gradient_256_scaled(size: Tuple[int, int],
+                                   reverse=True) -> Image:
+    gradient = Image.new('L', (256, 1), color=None)
     for x in range(256):
-        if lr:
+        if reverse:
             gradient.putpixel((x, 0), x)
         else:
             gradient.putpixel((x, 0), 255 - x)
@@ -23,10 +33,10 @@ def gradient256h(size: Tuple[int, int], lr=True) -> Image:
     return gradient.resize(size)
 
 
-def gradient256v(size: Tuple[int, int], lr=True) -> Image:
-    gradient = Image.new('L', (1, 256), color=0x00)
+def vertical_gradient_256_scaled(size: Tuple[int, int], reverse=True) -> Image:
+    gradient = Image.new('L', (1, 256), color=None)
     for x in range(256):
-        if lr:
+        if reverse:
             gradient.putpixel((0, x), x)
         else:
             gradient.putpixel((0, x), 255 - x)
@@ -78,7 +88,8 @@ class Mixer:
 
     def make_seamless_h(self) -> Image:
         stripe = self._to_rgba(self._right_stripe_image())
-        stripe.putalpha(gradient256h(stripe.size, lr=False))
+        stripe.putalpha(
+            horizontal_gradient_256_scaled(stripe.size, reverse=False))
 
         overlay = Image.new('RGBA', size=self.source.size, color=0x00)
         overlay.paste(stripe, box=(0, 0))
@@ -94,7 +105,8 @@ class Mixer:
 
     def make_seamless_v(self) -> Image:
         stripe = self._to_rgba(self._bottom_stripe_image())
-        stripe.putalpha(gradient256v(stripe.size, lr=False))
+        stripe.putalpha(
+            vertical_gradient_256_scaled(stripe.size, reverse=False))
 
         overlay = Image.new('RGBA', size=self.source.size, color=0x00)
         overlay.paste(stripe, box=(0, 0))
