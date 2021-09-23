@@ -20,12 +20,12 @@ We cannot use the original space image as an endless background: the seams are v
 
 ![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
 
-Converted image: result of  `img2texture`. 
+This shows the result of `img2texture`, for clarity in four copies side by side. 
 
-Each image is slightly reduced in size and the edges are modified with 
+The image is slightly reduced in size and the edges are modified with 
 alpha-blending.
 
-Seams no longer appear when merging images. This indicates that the converted image can be tiled and panned in any 
+Seams no longer appear when merging. The converted image can be tiled and panned in any 
 direction. It will feel endless and seamless.
 
 
