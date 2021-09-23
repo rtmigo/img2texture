@@ -8,7 +8,9 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
   <summary>Sample images</summary>
 
 ### Source image
-![Source image](docs/1_orion_src.jpg)
+SOURCE | TILED
+-------+--------
+![Source image](docs/1_orion_src.jpg) | ![Source tiled](docs/1_orion_src_2x2.jpg)
 
 ### Source tiled 
 ![Source tiled](docs/1_orion_src_2x2.jpg)
