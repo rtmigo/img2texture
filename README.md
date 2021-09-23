@@ -14,7 +14,7 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
 
 Orion galaxy by NASA/ESA.
 
-We cannot use the original image of Orion as an endless background: the seams are visible.
+We cannot use the original space image as an endless background: the seams are visible.
 
 ### Converted image (merged four duplicates)
 
