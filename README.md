@@ -8,7 +8,7 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
   <summary>Sample images</summary>
 
 
-### Original image (merged four duplicates)
+### Original image x4
 
 ![Source tiled](docs/1_orion_src_2x2.jpg)
 
@@ -16,7 +16,7 @@ Orion galaxy by NASA/ESA.
 
 We cannot use the original space image as an endless background: the seams are visible.
 
-### Converted image (merged four duplicates)
+### Converted image x4
 
 ![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
 
