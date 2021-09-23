@@ -13,7 +13,7 @@ This is an image of the Orion galaxy from NASA / ESA.
 
 ![Source image](docs/1_orion_src.jpg) 
 
-### Four source images side by side  
+### Four copies of source image side by side  
 
 
 
@@ -28,7 +28,7 @@ the edges are modified with simple alpha-blending.
 
 ![Converted image](docs/2_orion_seamless.jpg)
 
-### Four converted images side by side
+### Four copies of converted image side by side
 
 The seams between the tiles are disappeared.
 
