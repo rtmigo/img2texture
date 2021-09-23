@@ -83,3 +83,15 @@ The 40% seam.
 ![--overlap 40](docs/3_orion_40_2x2.jpg)
 
 </details>
+
+## --tile
+
+The `--tile` option will create a 2x2 tiled version in addition to the converted image.
+
+The following command will create `seamless.jpg` and `seamless_2x2.jpg`. 
+
+```
+$ img2texture source.jpg seamless.jpg --tile 
+```
+
+All the samples on this page were created with `--tile`.
