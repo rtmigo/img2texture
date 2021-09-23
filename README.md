@@ -13,7 +13,7 @@ This is an image of the Orion galaxy from NASA / ESA.
 
 ![Source image](docs/1_orion_src.jpg) 
 
-### Source tiled 
+### Four source images side by side  
 
 The original image cannot be used as an endless background: the seams are visible.
 
@@ -26,7 +26,7 @@ the edges are modified with simple alpha-blending.
 
 ![Converted image](docs/2_orion_seamless.jpg)
 
-### Converted tiled
+### Four converted images side by side
 
 The seams between the tiles are disappeared.
 
