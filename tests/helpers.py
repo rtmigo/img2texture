@@ -11,6 +11,7 @@ def temp_file_path(basename: str) -> Path:
     result = Path(__file__).parent / "data" / "out" / basename
     if result.exists():
         os.remove(result)
+    result.parent.mkdir(exist_ok=True)
     return result
 
 
