@@ -60,4 +60,3 @@ setup(
 
     test_suite="test_unit.suite"
 )
-
