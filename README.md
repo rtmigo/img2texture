@@ -36,7 +36,8 @@ the edges are modified with simple alpha-blending.
 
 The seams between the tiles are disappeared.
 
-With the proper magnification, this texture can be panned in any direction. It will feel endless and seamless.
+This indicated that with the proper magnification, the converted image can be panned in any 
+direction. It will feel endless and seamless.
 
 
 </details>
