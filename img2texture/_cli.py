@@ -32,15 +32,15 @@ class ParsedArgs:
         parser.add_argument("source",
                             help="Path of source image file.")
         parser.add_argument("target",
-                            help="Path of target (tile) file.")
+                            help="Path of the converted file.")
         parser.add_argument("--tile",
                             action='store_true',
                             default=False,
-                            help="Also make 2x2 tile.")
+                            help="Create an additional file with four copies "
+                                 "of the converted image merged side by side")
         parser.add_argument("--mode",
                             choices=[str(m.value) for m in Mode],
                             default=Mode.both)
-
         parser.add_argument('--version',
                             action='store_true',
                             default=False,

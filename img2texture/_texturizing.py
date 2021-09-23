@@ -4,12 +4,7 @@
 from pathlib import Path
 from typing import Tuple
 
-from PIL import Image
-
-# preventing Image.DecompressionBombError: Image size (324000000 pixels)
-# exceeds limit of 178956970 pixels, could be decompression bomb DOS attack.
-# We just open a large file and are not afraid of it
-Image.MAX_IMAGE_PIXELS = None
+from ._common import Image  # importing with tweaked options
 
 
 # todo Find a way to add dithering noise to 8-bit grading
