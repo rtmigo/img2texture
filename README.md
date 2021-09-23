@@ -1,11 +1,7 @@
-# img2texture
+# img2texture [draft]
 
 Command line utility that converts images to seamless tiles.
 The resulting tiles can be used as textures in games, compositing and 3D modeling applications, etc.
-
-Draft.
-
-
 # Install
 
 ```

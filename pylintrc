@@ -1,0 +1,27 @@
+[MASTER]
+
+output-format=colorized
+
+[MESSAGES CONTROL]
+
+#disable=R,C
+
+#R,C,W,
+disable=
+    unused-wildcard-import,
+    wildcard-import,
+    missing-function-docstring,
+    missing-module-docstring,
+    missing-class-docstring,
+    no-self-use, # Method could be a function
+    invalid-name, # Variable name "t" doesn't conform to snake_case naming style
+    f-string-without-interpolation, # Using an f-string that does not have any interpolated variables
+    redefined-builtin,
+    fixme, # todos
+    too-many-arguments,
+    line-too-long,
+    import-outside-toplevel,
+    bare-except,
+    no-else-return,
+    consider-using-sys-exit,
+    too-few-public-methods
