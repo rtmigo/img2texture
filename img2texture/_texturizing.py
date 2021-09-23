@@ -12,10 +12,19 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 
-def gradient256h(size: Tuple[int, int], lr=True) -> Image:
-    gradient = Image.new('L', (256, 1), color=0x00)
+# todo Find a way to add dithering noise to 8-bit
+# It looks like in 2021 Pillow is not able to convert color depth at all.
+# And the best ideas from the discussion boil down to leaving the top bits of
+# the colors, without any plans for dithering. Therefore, we cannot just create
+# a 32-bit gradient with good conversion before blending.
+# https://github.com/python-pillow/Pillow/issues/3011
+
+
+def horizontal_gradient_256_scaled(size: Tuple[int, int],
+                                   reverse=True) -> Image:
+    gradient = Image.new('L', (256, 1), color=None)
     for x in range(256):
-        if lr:
+        if reverse:
             gradient.putpixel((x, 0), x)
         else:
             gradient.putpixel((x, 0), 255 - x)
@@ -23,10 +32,10 @@ def gradient256h(size: Tuple[int, int], lr=True) -> Image:
     return gradient.resize(size)
 
 
-def gradient256v(size: Tuple[int, int], lr=True) -> Image:
-    gradient = Image.new('L', (1, 256), color=0x00)
+def vertical_gradient_256_scaled(size: Tuple[int, int], reverse=True) -> Image:
+    gradient = Image.new('L', (1, 256), color=None)
     for x in range(256):
-        if lr:
+        if reverse:
             gradient.putpixel((0, x), x)
         else:
             gradient.putpixel((0, x), 255 - x)
@@ -78,7 +87,8 @@ class Mixer:
 
     def make_seamless_h(self) -> Image:
         stripe = self._to_rgba(self._right_stripe_image())
-        stripe.putalpha(gradient256h(stripe.size, lr=False))
+        stripe.putalpha(
+            horizontal_gradient_256_scaled(stripe.size, reverse=False))
 
         overlay = Image.new('RGBA', size=self.source.size, color=0x00)
         overlay.paste(stripe, box=(0, 0))
@@ -94,7 +104,8 @@ class Mixer:
 
     def make_seamless_v(self) -> Image:
         stripe = self._to_rgba(self._bottom_stripe_image())
-        stripe.putalpha(gradient256v(stripe.size, lr=False))
+        stripe.putalpha(
+            vertical_gradient_256_scaled(stripe.size, reverse=False))
 
         overlay = Image.new('RGBA', size=self.source.size, color=0x00)
         overlay.paste(stripe, box=(0, 0))
