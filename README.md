@@ -30,9 +30,11 @@ the edges are modified with simple alpha-blending.
 
 ### Four copies of converted image side by side
 
-The seams between the tiles are disappeared.
+
 
 ![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
+
+The seams between the tiles are disappeared.
 
 With the proper magnification, this texture can be panned in any direction. It will feel endless and seamless.
 
