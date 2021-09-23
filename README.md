@@ -7,36 +7,25 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
 <details>
   <summary>Sample images</summary>
 
-### Source image
-
-This is an image of the Orion galaxy from NASA / ESA.
-
-![Source image](docs/1_orion_src.jpg) 
-
-### Four copies of source image side by side  
 
 
 
 ![Source tiled](docs/1_orion_src_2x2.jpg)
 
-It cannot be used as an endless background: the seams are visible.
+Four copies of original image side by side (Orion galaxy by NASA/ESA).
+
+We cannot use this image of Orion as an endless background: the seams are visible.
 
 ### Converted image
 
-This is the result of `img2texture`. The image is slightly reduced in size and 
-the edges are modified with alpha-blending.
-
-![Converted image](docs/2_orion_seamless.jpg)
-
-### Four copies of converted image side by side
-
-
-
 ![Converted tiled](docs/2_orion_seamless.jpg2x2.jpg)
 
-The seams between the tiles are disappeared.
+Four copies of the converted image: result of  `img2texture`. 
 
-This indicates that the converted image can be tiled and panned in any 
+Each image is slightly reduced in size and the edges are modified with 
+alpha-blending.
+
+Seams no longer appear when merging images. This indicates that the converted image can be tiled and panned in any 
 direction. It will feel endless and seamless.
 
 
