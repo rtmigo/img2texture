@@ -7,6 +7,7 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
 <details>
   <summary>Sample images</summary>
 
+:warning: If images don't load, check out the [original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).
 
 ### Original image x4
 
