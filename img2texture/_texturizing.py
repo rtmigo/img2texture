@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: (c) 2021 Artyom Galkin <github.com/rtmigo>
 # SPDX-License-Identifier: MIT
-
+from math import floor
 from pathlib import Path
 from typing import Tuple
 
@@ -44,6 +44,14 @@ def vertical_gradient_256_scaled(size: Tuple[int, int], reverse=True) -> Image:
     return gradient.resize(size)
 
 
+def stripe_size(full_size: int, pct: float) -> int:
+    if not 0 <= pct <= 0.5:
+        raise ValueError(pct)
+    result = floor(full_size * pct)
+    assert result * 2 <= full_size
+    return result
+
+
 class Mixer:
     def __init__(self, source: Image, pct=1.0 / 3):
         self.source = source
@@ -59,11 +67,11 @@ class Mixer:
 
     @property
     def horizontal_stripe_width(self) -> int:
-        return round(self.src_width * self.pct)
+        return stripe_size(self.src_width, self.pct)
 
     @property
     def vertical_stripe_height(self) -> int:
-        return round(self.src_height * self.pct)
+        return stripe_size(self.src_height, self.pct)
 
     def _left_stripe_image(self):
         return self.source.crop(
