@@ -30,7 +30,7 @@ The result of `img2texture`, in four copies side by side.
 The image is slightly reduced in size and the edges are modified with 
 alpha-blending.
 
-Seams no longer appear when merging. The converted image can be tiled and panned in any 
+The converted image can be tiled and panned in any 
 direction. It will feel endless and seamless.
 
 
