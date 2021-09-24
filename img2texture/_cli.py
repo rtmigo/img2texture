@@ -64,8 +64,8 @@ class ParsedArgs:
 
         self._parsed = parser.parse_args()
 
-        if not 0 <= self.overlap_pct <= 1.0:
-            parser.error("--overlap must be in range from 0 to 1")
+        if not 0 <= self.overlap_pct <= 0.5:
+            parser.error("--overlap must be in range from 0.0 to 0.5")
 
     @property
     def source(self) -> Path:
