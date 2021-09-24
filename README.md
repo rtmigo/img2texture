@@ -11,7 +11,9 @@ The resulting tiles can be used as textures in games, compositing and 3D modelin
 <details>
   <summary>Sample images</summary>
 
-⚠️ If images don't load, check out the [original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).
+
+*⚠️ If the images below are not displayed, check out the 
+[original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).*
 
 ### Original image x4
 
@@ -65,11 +67,13 @@ Increasing the value makes the seam less visible. However, the image becomes sma
 <details>
   <summary>Sample images</summary>
 
-⚠️ If images don't load, check out the [original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).
+*⚠️ If the images below are not displayed, check out the 
+[original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).*
+
 
 ### --overlap 0.05
 
-The 5% seam.
+5% of the width and 5% of the height are used to mask the seam.
 
 ![--overlap 0.05](docs/3_orion_05_2x2.jpg)
 
@@ -77,7 +81,7 @@ The 5% seam.
 
 ### --overlap 0.4
 
-The 40% seam.
+40% of the width and 40% of the height are used to mask the seam.
 
 ![--overlap 40](docs/3_orion_40_2x2.jpg)
 
