@@ -90,6 +90,22 @@ def build():
     compile.run([
         "--clean", "--onefile", "-y",
         "--collect-all", "img2texture",
+
+
+        #"--log-level", "DEBUG",
+        #"--specpath", "pyinstaller.myspec",
+        "--exclude-module", 'FixTk',
+        "--exclude-module", 'tcl',
+        "--exclude-module", 'tk',
+        "--exclude-module", '_tkinter',
+        "--exclude-module", 'tkinter',
+        "--exclude-module", 'Tkinter',
+        "--exclude-module", "IPython",
+        "--exclude-module", "mypy",
+        "--exclude-module", "pip",
+        "--exclude-module", "click",
+        "--exclude-module", "neatest",
+        "--exclude-module", "chkpkg",
         "--name", name, "_run.py"
     ])
 
@@ -98,7 +114,7 @@ def build():
     print(f"Created {exe}")
     print(f"Exe size: {exe.stat().st_size / 1024 / 1024:.0f} MiB")
 
-    os.remove(project_dir / "img2texture.spec")
+    os.remove(project_dir / "img2texture.spec")  # этот генерируется автоматичски
     shutil.rmtree(project_dir / "build")
 
 
