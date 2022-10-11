@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: (c) 2021 Artyom Galkin <github.com/rtmigo>
+# SPDX-FileCopyrightText: (c) 2021 Artsiom iG <github.com/rtmigo>
 # SPDX-License-Identifier: MIT
 from math import floor
 from pathlib import Path

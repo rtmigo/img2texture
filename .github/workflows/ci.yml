@@ -1,4 +1,4 @@
-name: ci
+name: test-and-deploy
 
 on:
   push:
@@ -6,12 +6,6 @@ on:
     paths-ignore:
       - '**.md'
       - '**.txt'
-  pull_request:
-    branches: [ dev ]
-    paths-ignore:
-      - '**.md'
-      - '**.txt'
-
 
 jobs:
   test:
@@ -22,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
-        python-version: [ 3.7, 3.8, 3.9 ] # 3.10.0-beta.1
+        python-version: [ 3.7, '3.10' ] # 3.10.0-beta.1
 
     steps:
       - uses: actions/checkout@v2
@@ -107,3 +101,4 @@ jobs:
         run: |
           python setup.py sdist bdist_wheel
           twine upload dist/*
+
