@@ -155,7 +155,7 @@ jobs:
   
 
   to-github-release:
-    needs: [ build-exe, release-flag ]
+    needs: [ build-exe, to-staging, release-flag ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
