@@ -13,6 +13,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+
+  release-flag:
+    if: contains(github.event.head_commit.message, '!!release')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+  master-flag:
+    if: contains(github.event.head_commit.message, '!!master')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
   test:
     timeout-minutes: 15
 
@@ -72,6 +85,12 @@ jobs:
         run: python ./do.py build
       - name: Run the executable
         run: dist/img2texture --version
+      - name: Store Exe as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: binary_from_${{ matrix.os }}
+          path: dist/*
+          retention-days: 3
 
   to-staging:
     needs: test
@@ -130,3 +149,33 @@ jobs:
           python setup.py sdist bdist_wheel
           twine upload dist/*
 
+  to-github-release:
+    needs: [ build-exe,
+             release-flag ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get previously built artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: downloaded_artifacts
+
+      - name: Create distributable archives
+        run: |
+          wget -c https://github.com/rtmigo/exe2dist/releases/latest/download/exe2dist_linux_amd64.tgz -O - | tar -xz
+          ./exe2dist img2texture 'downloaded_artifacts/*/*' dist
+          
+      - name: Get the project version
+        run: |
+          echo "::set-output name=VER::$(python setup.py --version)"
+        id: version
+
+      - name: Publish GitHub release
+        id: publish_github_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.VER }}
+          files: ./dist/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
