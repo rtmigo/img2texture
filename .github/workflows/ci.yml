@@ -62,19 +62,12 @@ jobs:
         run: |
           python3 ./do.py test
       - name: Run pkg tests
+        # важно, чтобы в случае Windows это был действительно python, а
+        # не python3. Иначе вызовы самого-себя в качестве дочернего процесса
+        # приведут к ошибкам с "ненайденными файлами". Ненайденный - вероятно
+        # сам пайтоне внутри venv
         run: |
           python ./do.py test-pkg
-
-#      - name: Prepare pkg tests
-#        run: |
-#          pip install chkpkg
-#          #pip install git+https://github.com/rtmigo/chkpkg_py#egg=chkpkg
-#      - name: Run pkg tests
-        # по невыясненной причине 2022-10 в Github Actions не проходили
-        # тесты Windows, если запускать "python3 ./do.py test-pkg" (хотя
-        # проверки были те же). Какой-то файл был не найден.
-#        run: |
- #         python ./test_pkg.py
 
   to-staging:
     needs: test
