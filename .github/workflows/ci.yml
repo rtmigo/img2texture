@@ -57,16 +57,21 @@ jobs:
           pip install -r requirements.txt
       - name: Lint
         run: |
-          python3 ./lint.py
+          python3 ./do.py lint
       - name: Run unit tests
         run: |
-          python3 -m unittest discover tests
+          python3 ./do.py test
+#      - name: Run pkg tests
+#        run: |
+#          python3 ./do.py test-pkg
+
       - name: Prepare pkg tests
         run: |
           pip install chkpkg
+#          #pip install git+https://github.com/rtmigo/chkpkg_py#egg=chkpkg
       - name: Run pkg tests
         run: |
-          python ./test_pkg.py
+          python ./test_pkg.py          
 
   to-staging:
     needs: test
