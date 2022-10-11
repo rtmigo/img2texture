@@ -1,4 +1,4 @@
-__version__ = "1.0.0rc1"
+__version__ = "1.0.1"
 
 __copyright__ = "(c) Artsiom iG (rtmigo.github.io)"
 __license__ = "MIT"
