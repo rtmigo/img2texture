@@ -41,15 +41,19 @@ direction. It will feel endless and seamless.
 
 # Install
 
-```
-$ pip3 install img2texture
+Just download the latest executable from [Releases](https://github.com/rtmigo/img2texture/releases) page.
+
+Or, install as a Python package:
+
+```bash
+pip3 install img2texture
 ```
 
 # Run
 
 Create new `seamless.jpg` from `source.jpg`.
-```
-$ img2texture /path/to/source.jpg /path/to/seamless.jpg 
+```bash
+img2texture /path/to/source.jpg /path/to/seamless.jpg 
 ```
 
 ## --overlap
@@ -59,8 +63,8 @@ The `--overlap` option determines how much of the image will be used to hide the
 For example, the following command uses 25% of the width and 25% of the height 
 of the original image:
 
-```
-$ img2texture source.jpg seamless.jpg --overlap 0.25 
+```bash
+img2texture source.jpg seamless.jpg --overlap 0.25 
 ```
 
 Increasing the value makes the seam less visible. However, the image becomes smaller.
@@ -94,8 +98,8 @@ The `--tile` option will create a 2x2 tiled version in addition to the converted
 
 The following command will create `seamless.jpg` and `seamless_2x2.jpg`. 
 
-```
-$ img2texture source.jpg seamless.jpg --tile 
+```bash
+img2texture source.jpg seamless.jpg --tile 
 ```
 
 All the samples on this page were created with `--tile`.

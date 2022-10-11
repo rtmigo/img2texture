@@ -81,7 +81,7 @@ jobs:
           github_token: ${{ github.token }}
 
   build-exe:
-    needs: [to-staging]
+    needs: [ to-staging ]
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -140,8 +140,8 @@ jobs:
 
 
   to-pypi:
-    needs: [ to-staging,
-             pypi-flag ]
+    needs: [ to-staging, pypi-flag ]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -161,11 +161,10 @@ jobs:
         run: |
           python setup.py sdist bdist_wheel
           twine upload dist/*
-    
+  
 
   to-github-release:
-    needs: [ build-exe,
-             release-flag ]
+    needs: [ build-exe, release-flag ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -179,7 +178,7 @@ jobs:
         run: |
           wget -c https://github.com/rtmigo/exe2dist/releases/latest/download/exe2dist_linux_amd64.tgz -O - | tar -xz
           ./exe2dist img2texture 'downloaded_artifacts/*/*' dist
-          
+
       - name: Get the project version
         run: |
           echo "::set-output name=VER::$(python setup.py --version)"
