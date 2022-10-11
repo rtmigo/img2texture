@@ -91,6 +91,7 @@ def build():
         "--clean", "--onefile", "-y",
         "--collect-all", "img2texture",
 
+
         #"--log-level", "DEBUG",
         #"--specpath", "pyinstaller.myspec",
         "--exclude-module", 'FixTk',
