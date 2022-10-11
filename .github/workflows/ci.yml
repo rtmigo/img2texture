@@ -61,17 +61,13 @@ jobs:
       - name: Run unit tests
         run: |
           python3 ./do.py test
-#      - name: Run pkg tests
-#        run: |
-#          python3 ./do.py test-pkg
-
-      - name: Prepare pkg tests
-        run: |
-          pip install chkpkg
-#          #pip install git+https://github.com/rtmigo/chkpkg_py#egg=chkpkg
       - name: Run pkg tests
+        # важно, чтобы в случае Windows это был действительно python, а
+        # не python3. Иначе вызовы самого-себя в качестве дочернего процесса
+        # приведут к ошибкам с "ненайденными файлами". Ненайденный - вероятно
+        # сам пайтоне внутри venv
         run: |
-          python ./test_pkg.py          
+          python ./do.py test-pkg
 
   to-staging:
     needs: test
