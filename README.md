@@ -9,10 +9,6 @@ Command line utility for converting images to seamless tiles.
 
 The resulting tiles can be used as textures in games, compositing and 3D modeling applications, etc.
 
-<details>
-  <summary>Sample images</summary>
-
-
 *⚠️ If the images below are not displayed, check out the 
 [original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).*
 
@@ -36,8 +32,6 @@ alpha-blending.
 The converted image can be tiled and panned in any 
 direction. It will feel endless and seamless.
 
-
-</details>
 
 # Install
 
