@@ -131,17 +131,6 @@ jobs:
           target_branch: master
           github_token: ${{ github.token }}
 
-      # ADD GITHUB RELEASE
-      - name: Get the Python package version
-        run: echo "PKGVER=$(python setup.py --version)" >> $GITHUB_ENV
-      - name: Publish GitHub release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ env.PKGVER }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
   to-pypi:
     needs: [ to-master, pypi-flag ]
     runs-on: ubuntu-latest
