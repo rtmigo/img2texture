@@ -82,7 +82,7 @@ jobs:
           github_token: ${{ github.token }}
 
   build-exe:
-    needs: [ to-staging ]
+    #needs: [ to-staging ]
     runs-on: ${{ matrix.os }}
 
     strategy:
