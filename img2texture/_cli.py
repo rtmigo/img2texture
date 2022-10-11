@@ -10,7 +10,9 @@ from ._tiling import tile
 
 
 def print_version():
-    print(f'img2texture {constants.__version__}\nMIT {constants.__copyright__}')
+    print(f'img2texture {constants.__version__} '
+          f'({constants.__build_timestamp__.split()[0]})\n'
+          f'{constants.__copyright__}')
 
 
 class Mode(Enum):
