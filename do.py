@@ -62,6 +62,12 @@ def _replace_build_date(fn: Path):
     fn.write_text(new_text)
 
 
+def _get_single_file(dirpath: Path) -> Path:
+    exes = list(dirpath.glob("*"))
+    assert len(exes) == 1
+    return Path(exes[0])
+
+
 @app.command()
 def build():
     name = "img2texture"
@@ -78,14 +84,13 @@ def build():
         "--name", name, "_run.py"
     ])
 
-    exe = project_dir / "dist" / name
+    exe = _get_single_file(project_dir / "dist")
     print()
     print(f"Created {exe}")
     print(f"Exe size: {exe.stat().st_size / 1024 / 1024:.0f} MiB")
 
     os.remove(project_dir / "img2texture.spec")
     shutil.rmtree(project_dir / "build")
-
 
 
 if __name__ == "__main__":
