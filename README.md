@@ -1,6 +1,7 @@
 [![PyPI version shields.io](https://img.shields.io/pypi/v/img2texture.svg)](https://pypi.python.org/pypi/img2texture/)
 [![Generic badge](https://img.shields.io/badge/Python-3.7+-blue.svg)](#)
 [![Generic badge](https://img.shields.io/badge/OS-Windows%20|%20macOS%20|%20Linux-blue.svg)](#)
+[![Downloads](https://pepy.tech/badge/img2texture/month)](https://pepy.tech/project/img2texture)
 
 # [img2texture](https://github.com/rtmigo/img2texture_py#readme)
 
@@ -40,15 +41,23 @@ direction. It will feel endless and seamless.
 
 # Install
 
-```
-$ pip3 install img2texture
+The easiest way is to download and extract a [binary executable](https://github.com/rtmigo/img2texture/releases):
+
+* [for macOS](https://github.com/rtmigo/img2texture/releases/latest/download/img2texture_darwin_amd64.tgz)
+* [for Linux](https://github.com/rtmigo/img2texture/releases/latest/download/img2texture_linux_amd64.tgz)
+* [for Windows](https://github.com/rtmigo/img2texture/releases/latest/download/img2texture_windows_amd64.zip)
+
+Or install as a Python package:
+
+```bash
+pip3 install img2texture
 ```
 
 # Run
 
 Create new `seamless.jpg` from `source.jpg`.
-```
-$ img2texture /path/to/source.jpg /path/to/seamless.jpg 
+```bash
+img2texture /path/to/source.jpg /path/to/seamless.jpg 
 ```
 
 ## --overlap
@@ -58,8 +67,8 @@ The `--overlap` option determines how much of the image will be used to hide the
 For example, the following command uses 25% of the width and 25% of the height 
 of the original image:
 
-```
-$ img2texture source.jpg seamless.jpg --overlap 0.25 
+```bash
+img2texture source.jpg seamless.jpg --overlap 0.25 
 ```
 
 Increasing the value makes the seam less visible. However, the image becomes smaller.
@@ -93,8 +102,13 @@ The `--tile` option will create a 2x2 tiled version in addition to the converted
 
 The following command will create `seamless.jpg` and `seamless_2x2.jpg`. 
 
-```
-$ img2texture source.jpg seamless.jpg --tile 
+```bash
+img2texture source.jpg seamless.jpg --tile 
 ```
 
 All the samples on this page were created with `--tile`.
+
+# License
+
+Copyright © 2021 [Artsiom iG](https://github.com/rtmigo).
+Released under the [MIT License](LICENSE).

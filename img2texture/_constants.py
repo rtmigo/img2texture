@@ -1,4 +1,6 @@
-__version__ = "0.1.1"
+__version__ = "1.0.0-dev3"
 
-__copyright__ = "(c) 2021 Artyom Galkin <github.com/rtmigo>"
+__copyright__ = "(c) Artsiom iG (rtmigo.github.io)"
 __license__ = "MIT"
+__build_timestamp__ = "2022-10-11 21:17:45"
+
