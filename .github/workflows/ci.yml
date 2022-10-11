@@ -41,7 +41,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
-        python-version: [ 3.7, '3.10' ] # 3.10.0-beta.1
+        python-version: [ 3.7, '3.11.0-rc.2' ]
 
     steps:
       - uses: actions/checkout@v2
@@ -101,10 +101,10 @@ jobs:
           pip install -r requirements.txt
       - name: Build
         run: python ./do.py build
-      - name: Run the executable
+      - name: Run exe (test A)
         run: dist/img2texture --version
-      - name: Run again
-        run: dist/img2texture docs/1_orion_src.jpg /tmp/texture.jpg
+      - name: Run exe (test B)
+        run: dist/img2texture docs/1_orion_src.jpg texture.tmp.jpg
       - name: Store Exe as artifact
         uses: actions/upload-artifact@v3
         with:
@@ -142,7 +142,7 @@ jobs:
 
 
   to-pypi:
-    needs: [ to-staging, pypi-flag ]
+    needs: [ to-master, pypi-flag ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
