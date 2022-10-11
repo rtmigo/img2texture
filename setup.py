@@ -25,7 +25,7 @@ setup(
 
     author="Artsiom iG",
     author_email="ortemeo@gmail.com",
-    url='https://github.com/rtmigo/img2texture_py',
+    url='https://github.com/rtmigo/img2texture',
 
     packages=find_packages(include=[name, f'{name}.*']),
 

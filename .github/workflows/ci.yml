@@ -57,13 +57,10 @@ jobs:
           pip install -r requirements.txt
       - name: Lint
         run: |
-          python3 ./lint.py
+          python3 ./do.py lint
       - name: Run unit tests
         run: |
-          python3 -m unittest discover tests
-      - name: Prepare pkg tests
-        run: |
-          pip install chkpkg
+          python3 ./do.py test
       - name: Run pkg tests
         run: |
           python ./test_pkg.py

@@ -3,14 +3,14 @@
 [![Generic badge](https://img.shields.io/badge/OS-Windows%20|%20macOS%20|%20Linux-blue.svg)](#)
 [![Downloads](https://pepy.tech/badge/img2texture/month)](https://pepy.tech/project/img2texture)
 
-# [img2texture](https://github.com/rtmigo/img2texture_py#readme)
+# [img2texture](https://github.com/rtmigo/img2texture#readme)
 
 Command line utility for converting images to seamless tiles.
 
-The resulting tiles can be used as textures in games, compositing and 3D modeling applications, etc.
+The resulting tiles can be used as textures in games, compositing and 3D modeling applications, etc. Nothing fancy, just overlaying images with alpha gradient.
 
 *⚠️ If the images below are not displayed, check out the 
-[original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).*
+[original of this document on GitHub](https://github.com/rtmigo/img2texture#readme).*
 
 ### Original image x4
 
@@ -71,7 +71,7 @@ Increasing the value makes the seam less visible. However, the image becomes sma
   <summary>Sample images</summary>
 
 *⚠️ If the images below are not displayed, check out the 
-[original of this document on GitHub](https://github.com/rtmigo/img2texture_py#readme).*
+[original of this document on GitHub](https://github.com/rtmigo/img2texture#readme).*
 
 
 ### --overlap 0.05
