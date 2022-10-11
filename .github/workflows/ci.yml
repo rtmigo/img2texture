@@ -113,7 +113,6 @@ jobs:
           path: dist/*
           retention-days: 3
 
-
   to-master:
     # if the commit message was "publish", copy the tested code
     # to "master" branch and create GitHub release
