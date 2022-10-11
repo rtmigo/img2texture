@@ -91,7 +91,7 @@ def build():
         "--clean", "--onefile", "-y",
         "--collect-all", "img2texture",
 
-        "--log-level", "DEBUG",
+        #"--log-level", "DEBUG",
         #"--specpath", "pyinstaller.myspec",
         "--exclude-module", 'FixTk',
         "--exclude-module", 'tcl',
@@ -100,6 +100,10 @@ def build():
         "--exclude-module", 'tkinter',
         "--exclude-module", 'Tkinter',
         "--exclude-module", "IPython",
+        "--exclude-module", "mypy",
+        "--exclude-module", "click",
+        "--exclude-module", "neatest",
+        "--exclude-module", "chkpkg",
         "--name", name, "_run.py"
     ])
 
