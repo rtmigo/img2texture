@@ -6,8 +6,11 @@
 # [img2texture](https://github.com/rtmigo/img2texture#readme)
 
 Command line utility for converting images to seamless tiles.
+It overlays images with an alpha gradient.
 
-The resulting tiles can be used as textures in games, compositing and 3D modeling applications, etc. Nothing fancy, just overlaying images with alpha gradient.
+The resulting tiles can be used as textures in games, compositing and 3D modeling applications, etc.
+
+
 
 *⚠️ If the images below are not displayed, check out the 
 [original of this document on GitHub](https://github.com/rtmigo/img2texture#readme).*
@@ -31,7 +34,6 @@ alpha-blending.
 
 The converted image can be tiled and panned in any 
 direction. It will feel endless and seamless.
-
 
 # Install
 
