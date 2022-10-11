@@ -99,6 +99,7 @@ def build():
         "--exclude-module", '_tkinter',
         "--exclude-module", 'tkinter',
         "--exclude-module", 'Tkinter',
+        "--exclude-module", "IPython",
         "--name", name, "_run.py"
     ])
 

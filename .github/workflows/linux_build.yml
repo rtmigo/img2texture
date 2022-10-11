@@ -1,0 +1,39 @@
+name: test-and-deploy
+
+on:
+  push:
+    branches: [ dev ]
+    paths-ignore:
+      - '**.md'
+      - '**.txt'
+
+concurrency:
+  # subsequently queued workflow run will interrupt previous runs
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+
+
+  build-exe:
+    #needs: [ to-staging ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade setuptools distlib
+          pip install -e .
+          pip install -r requirements.txt
+      - name: Build
+        run: python ./do.py build
+      - name: Run exe (test A)
+        run: dist/img2texture --version
+      - name: Run exe (test B)
+        run: dist/img2texture docs/1_orion_src.jpg texture.tmp.jpg
