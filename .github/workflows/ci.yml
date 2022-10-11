@@ -70,7 +70,7 @@ jobs:
           python ./do.py test-pkg
 
   to-staging:
-    needs: test
+    needs: [test, build-exe]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
