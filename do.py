@@ -102,6 +102,7 @@ def build():
         "--exclude-module", 'Tkinter',
         "--exclude-module", "IPython",
         "--exclude-module", "mypy",
+        "--exclude-module", "pip",
         "--exclude-module", "click",
         "--exclude-module", "neatest",
         "--exclude-module", "chkpkg",
