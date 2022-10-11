@@ -23,7 +23,7 @@ setup(
     name=name,
     version=constants['__version__'],
 
-    author="Artyom Galkin",
+    author="Artsiom iG",
     author_email="ortemeo@gmail.com",
     url='https://github.com/rtmigo/img2texture_py',
 
@@ -50,6 +50,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Environment :: Console",
         "Typing :: Typed",
         "Topic :: Scientific/Engineering :: Image Processing",

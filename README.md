@@ -99,3 +99,8 @@ $ img2texture source.jpg seamless.jpg --tile
 ```
 
 All the samples on this page were created with `--tile`.
+
+# License
+
+Copyright © 2021 [Artsiom iG](https://github.com/rtmigo).
+Released under the [MIT License](LICENSE).
