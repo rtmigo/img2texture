@@ -41,9 +41,13 @@ direction. It will feel endless and seamless.
 
 # Install
 
-Just download the latest executable from [Releases](https://github.com/rtmigo/img2texture/releases) page.
+The easiest way is to download and extract a [binary executable](https://github.com/rtmigo/img2texture/releases):
 
-Or, install as a Python package:
+* [for macOS](https://github.com/rtmigo/img2texture/releases/latest/download/img2texture_darwin_amd64.tgz)
+* [for Linux](https://github.com/rtmigo/img2texture/releases/latest/download/img2texture_linux_amd64.tgz)
+* [for Windows](https://github.com/rtmigo/img2texture/releases/latest/download/img2texture_windows_amd64.zip)
+
+Or install as a Python package:
 
 ```bash
 pip3 install img2texture
