@@ -7,6 +7,11 @@ on:
       - '**.md'
       - '**.txt'
 
+concurrency:
+  # subsequently queued workflow run will interrupt previous runs
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
 jobs:
   test:
     timeout-minutes: 15
@@ -66,7 +71,7 @@ jobs:
       - name: Build
         run: python ./do.py build
       - name: Run the executable
-        run: dist img2texture --version
+        run: dist/img2texture --version
 
   to-staging:
     needs: test
