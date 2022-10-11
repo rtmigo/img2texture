@@ -20,6 +20,13 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+  pypi-flag:
+    if: contains(github.event.head_commit.message, '!!pypi')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+
   master-flag:
     if: contains(github.event.head_commit.message, '!!master')
     runs-on: ubuntu-latest
@@ -48,7 +55,6 @@ jobs:
           python -m pip install --upgrade setuptools distlib
           pip install -e .
           pip install -r requirements.txt
-
       - name: Lint
         run: |
           python3 ./lint.py
@@ -58,12 +64,24 @@ jobs:
       - name: Prepare pkg tests
         run: |
           pip install chkpkg
-#          #pip install git+https://github.com/rtmigo/chkpkg_py#egg=chkpkg
       - name: Run pkg tests
         run: |
           python ./test_pkg.py
 
+  to-staging:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Merge current -> staging
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          target_branch: staging
+          github_token: ${{ github.token }}
+
   build-exe:
+    needs: [ to-staging ]
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -74,7 +92,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11.0-rc.2'
+          python-version: '3.10'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -92,24 +110,12 @@ jobs:
           path: dist/*
           retention-days: 3
 
-  to-staging:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Merge current -> staging
-        uses: devmasx/merge-branch@v1.3.1
-        with:
-          type: now
-          target_branch: staging
-          github_token: ${{ github.token }}
 
   to-master:
     # if the commit message was "publish", copy the tested code
     # to "master" branch and create GitHub release
 
-    if: github.event.head_commit.message=='publish'
-    needs: [ test ]
+    needs: [ to-staging, master-flag ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -132,6 +138,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+
+  to-pypi:
+    needs: [ to-staging, pypi-flag ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
       # ADD PYPI RELEASE
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -148,10 +161,10 @@ jobs:
         run: |
           python setup.py sdist bdist_wheel
           twine upload dist/*
+  
 
   to-github-release:
-    needs: [ build-exe,
-             release-flag ]
+    needs: [ build-exe, release-flag ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -165,7 +178,7 @@ jobs:
         run: |
           wget -c https://github.com/rtmigo/exe2dist/releases/latest/download/exe2dist_linux_amd64.tgz -O - | tar -xz
           ./exe2dist img2texture 'downloaded_artifacts/*/*' dist
-          
+
       - name: Get the project version
         run: |
           echo "::set-output name=VER::$(python setup.py --version)"
