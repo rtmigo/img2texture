@@ -63,7 +63,7 @@ jobs:
           python3 ./do.py test
       - name: Run pkg tests
         run: |
-          python ./test_pkg.py
+          python3 ./do.py test-pkg
 
   to-staging:
     needs: test
