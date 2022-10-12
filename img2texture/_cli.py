@@ -72,7 +72,7 @@ class ParsedArgs:
         parser.add_argument('--version',
                             action='store_true',
                             default=False,
-                            help="Show version info and sys.exit")
+                            help="Show version info and exit")
 
         self._parsed = parser.parse_args()
 
