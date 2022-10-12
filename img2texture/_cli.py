@@ -1,6 +1,7 @@
 import argparse
 import os
 import sys
+import traceback
 from enum import Enum
 from pathlib import Path
 
@@ -9,16 +10,16 @@ from img2texture import img2tex
 from ._tiling import tile
 
 
-def is_is_pyinstaller() -> bool:
+def in_pyinstaller() -> bool:
     return getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS')
 
 
 def print_version():
     comment = constants.__build_timestamp__.split()[0] \
-        if is_is_pyinstaller() else "pip package"
-    print(f'img2texture {constants.__version__}'
-          f' ({comment})\n'
-          f'{constants.__copyright__}')
+        if in_pyinstaller() else "pip package"
+    print(f'img2texture {constants.__version__} ({comment})\n'
+          f'{constants.__copyright__}\n'
+          "https://github.com/rtmigo/img2texture")
 
 
 class Mode(Enum):
@@ -65,10 +66,13 @@ class ParsedArgs:
                             choices=[str(m.value) for m in Mode],
                             default=Mode.both,
                             help=argparse.SUPPRESS)
+        parser.add_argument("--trace",
+                            action='store_true',
+                            help=argparse.SUPPRESS)
         parser.add_argument('--version',
                             action='store_true',
                             default=False,
-                            help="Show version info and sys.exit")
+                            help="Show version info and exit")
 
         self._parsed = parser.parse_args()
 
@@ -95,6 +99,12 @@ class ParsedArgs:
     def tile(self) -> bool:
         return self._parsed.tile
 
+    @property
+    def exceptions(self) -> bool:
+        r = self._parsed.trace
+        assert isinstance(r, bool)
+        return r
+
 
 def tile_filename(texture: Path) -> Path:
     basename = texture.name
@@ -106,20 +116,31 @@ def tile_filename(texture: Path) -> Path:
 def cli():
     args = ParsedArgs()
 
-    if args.target.exists():
-        if not confirm(f"File '{args.target.name}' exists. Overwrite?"):
-            sys.exit(3)
-        os.remove(args.target)
+    try:
+        if args.target.exists():
+            if not confirm(f"File '{args.target.name}' exists. Overwrite?"):
+                sys.exit(3)
+            os.remove(args.target)
 
-    img2tex(args.source, args.target, pct=args.overlap_pct)
+        img2tex(args.source, args.target, pct=args.overlap_pct)
 
-    if args.tile:
-        tile_src = args.target if args.mode != Mode.none else args.source
-        tile_fn = tile_filename(tile_src)
-        if tile_fn.exists() and not confirm(
-                f"File '{tile_fn}' exists. Overwrite?"):
-            sys.exit(3)
+        if args.tile:
+            tile_src = args.target if args.mode != Mode.none else args.source
+            tile_fn = tile_filename(tile_src)
+            if tile_fn.exists() and not confirm(
+                    f"File '{tile_fn}' exists. Overwrite?"):
+                sys.exit(3)
 
-        if tile_fn.exists():
-            os.remove(tile_fn)
-        tile(tile_src, tile_fn, horizontal=2, vertical=2)
+            if tile_fn.exists():
+                os.remove(tile_fn)
+            tile(tile_src, tile_fn, horizontal=2, vertical=2)
+
+    except Exception as e:
+        if isinstance(e, SystemExit):
+            raise
+        if args.exceptions:
+            print(traceback.format_exc())
+        else:
+            print(f"ERROR: {e}")
+            print("Run with --trace to see full exception info.")
+        sys.exit(1)
