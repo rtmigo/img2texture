@@ -9,9 +9,15 @@ from img2texture import img2tex
 from ._tiling import tile
 
 
+def is_is_pyinstaller() -> bool:
+    return getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS')
+
+
 def print_version():
-    print(f'img2texture {constants.__version__} '
-          f'({constants.__build_timestamp__.split()[0]})\n'
+    comment = constants.__build_timestamp__.split()[0] \
+        if is_is_pyinstaller() else "pip package"
+    print(f'img2texture {constants.__version__}'
+          f' ({comment})\n'
           f'{constants.__copyright__}')
 
 
