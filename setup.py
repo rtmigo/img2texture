@@ -29,8 +29,8 @@ setup(
 
     packages=find_packages(include=[name, f'{name}.*']),
 
-    python_requires='>=3.7',
-    install_requires=["pillow"],
+    python_requires='>=3.7, <4',
+    install_requires=["pillow>=9.2, <10"],
 
     description="Command line utility for converting images to seamless tiles.",
     long_description=readme,
@@ -56,7 +56,8 @@ setup(
         "Typing :: Typed",
         "Topic :: Scientific/Engineering :: Image Processing",
         "Topic :: Multimedia :: Graphics",
-        "Operating System :: POSIX",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: MacOS",
         "Operating System :: Microsoft :: Windows"
     ],
 
