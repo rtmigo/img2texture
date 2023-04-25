@@ -3,7 +3,7 @@
 import warnings
 from math import floor
 from pathlib import Path
-from typing import Tuple
+from typing import Tuple, Union
 
 from ._common import Image  # importing with tweaked options
 
@@ -127,25 +127,39 @@ class Mixer:
 def img2tex(src: Path, dst: Path, pct=0.25):
     warnings.warn("Replaced by `file_to_seamless`", DeprecationWarning,
                   stacklevel=2)
-    file_to_seamless(src, dst, horizontal_overlap=pct, vertical_overlap=pct)
+    file_to_seamless(src, dst, overlap=pct)
 
+Overlap = Union[float, tuple[float, float]]
 
-def file_to_seamless(src: Path, dst: Path, horizontal_overlap: float = 0.25,
-                     vertical_overlap: float = 0.25) -> None:
+def file_to_seamless(src: Path, dst: Path, overlap: Overlap = 0.25) -> None:
     """Reads image from `src` file, converts it to seamless tile and saves
     to `dst` file."""
-    image_to_seamless(Image.open(src), horizontal_overlap=horizontal_overlap,
-                      vertical_overlap=vertical_overlap).save(dst)
+    image_to_seamless(Image.open(src), overlap=overlap).save(dst)
 
 
-def image_to_seamless(src: Image, horizontal_overlap: float = 0.25,
-                      vertical_overlap: float = 0.25) -> Image:
+def image_to_seamless(src: Image, overlap: Overlap = 0.25) -> Image:
     """Converts `PIL.Image` to seamless `PIL.Image`."""
-    mixer1 = Mixer(src, pct=horizontal_overlap)
+    mixer1 = Mixer(src, pct=_horizontal_overlap(overlap))
     result = mixer1.make_seamless_h()
 
-    mixer2 = Mixer(result, pct=vertical_overlap)
+    mixer2 = Mixer(result, pct=_vertical_overlap(overlap))
     result = mixer2.make_seamless_v()
     if result.mode != "RGB":
         result = result.convert("RGB")
     return result
+
+
+def _float_or_index(dynamic: Overlap,
+                    idx: int) -> float:
+    if isinstance(dynamic, float):
+        return dynamic
+    else:
+        return dynamic[idx]
+
+
+def _horizontal_overlap(overlaps: Overlap) -> float:
+    return _float_or_index(overlaps, 0)
+
+
+def _vertical_overlap(overlaps: Overlap) -> float:
+    return _float_or_index(overlaps, 1)

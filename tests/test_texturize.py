@@ -27,18 +27,29 @@ class TestGradient(unittest.TestCase):
 
 
 class TestToSeamless(unittest.TestCase):
-    def test_both_directions(self):
+    def test_overlap_tuple(self):
         src = Path(__file__).parent / "data" / "sand.png"
-        dst = temp_file_path("sand-tx.png")
-        dst_tiled = temp_file_path("sand-tx-tiled.png")
+        dst = temp_file_path("sand-tx-tuple.png")
+        dst_tiled = temp_file_path("sand-tx-tuple-tiled.png")
 
-        file_to_seamless(src, dst, horizontal_overlap=0.4, vertical_overlap=0.3)
+        file_to_seamless(src, dst, overlap=(0.4, 0.3))
         tile(dst, dst_tiled)
 
         # without RGB conversion it was c9c4d278498050e99c1df3994efc3bcd
         self.assertEqual(file_md5(dst), '696749d1337dc3d9e4021e9b8852a6e1')
 
+    def test_overlap_float(self):
+        src = Path(__file__).parent / "data" / "sand.png"
+        dst = temp_file_path("sand-tx-float.png")
+        dst_tiled = temp_file_path("sand-tx-float-tiled.png")
+
+        file_to_seamless(src, dst, overlap=0.4)
+        tile(dst, dst_tiled)
+
+        # without RGB conversion it was c9c4d278498050e99c1df3994efc3bcd
+        self.assertEqual(file_md5(dst), 'c957847053bc9f7747369f8a3ae091d2')
+
 
 if __name__ == "__main__":
     # TestGradient().test()
-    TestToSeamless().test_both_directions()
+    TestToSeamless().test_overlap_tuple()
