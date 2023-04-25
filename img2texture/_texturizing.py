@@ -129,7 +129,7 @@ def img2tex(src: Path, dst: Path, pct=0.25):
                   stacklevel=2)
     file_to_seamless(src, dst, overlap=pct)
 
-Overlap = Union[float, tuple[float, float]]
+Overlap = Union[float, Tuple[float, float]]
 
 def file_to_seamless(src: Path, dst: Path, overlap: Overlap = 0.25) -> None:
     """Reads image from `src` file, converts it to seamless tile and saves
