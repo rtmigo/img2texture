@@ -106,7 +106,7 @@ All the samples on this page were created with `--tile`.
 
 # Use programmatically
 
-If you don't need CLI but need to use a functions from your own program:
+If you don't need CLI but need to create seamless image in your own program:
 
 ```python3
 from PIL import Image
