@@ -5,8 +5,10 @@ import traceback
 from enum import Enum
 from pathlib import Path
 
+from PIL import Image
+
 import img2texture._constants as constants
-from img2texture import img2tex
+from img2texture import img2tex, file_to_seamless
 from ._tiling import tile
 
 
@@ -116,13 +118,18 @@ def tile_filename(texture: Path) -> Path:
 def cli():
     args = ParsedArgs()
 
+    # preventing "Image.DecompressionBombError: Image size (324000000 pixels)
+    # exceeds limit of 178956970 pixels, could be decompression bomb DOS attack".
+    # But in case of CLI we are not expecting attacks. Just opening large files
+    Image.MAX_IMAGE_PIXELS = None
+
     try:
         if args.target.exists():
             if not confirm(f"File '{args.target.name}' exists. Overwrite?"):
                 sys.exit(3)
             os.remove(args.target)
 
-        img2tex(args.source, args.target, pct=args.overlap_pct)
+        file_to_seamless(args.source, args.target, overlap=args.overlap_pct)
 
         if args.tile:
             tile_src = args.target if args.mode != Mode.none else args.source
