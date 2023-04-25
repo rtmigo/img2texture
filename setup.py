@@ -23,7 +23,7 @@ setup(
     name=name,
     version=constants['__version__'],
 
-    author="Artsiom iG",
+    author="Artёm iG",
     author_email="ortemeo@gmail.com",
     url='https://github.com/rtmigo/img2texture#readme',
 
