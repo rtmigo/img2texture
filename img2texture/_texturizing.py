@@ -19,7 +19,7 @@ from ._common import Image  # importing with tweaked options
 #
 # So all colors are 8 bit now. Maybe we should find a way to add some random
 # noise to out gradient. But Pillow will not create noise, we need to generate
-# it pixel-by-pixel, and probably not in native Python
+# it pixel-by-pixel, and probably not in Python
 
 
 def horizontal_gradient_256_scaled(size: Tuple[int, int],
@@ -129,7 +129,9 @@ def img2tex(src: Path, dst: Path, pct=0.25):
                   stacklevel=2)
     file_to_seamless(src, dst, overlap=pct)
 
+
 Overlap = Union[float, Tuple[float, float]]
+
 
 def file_to_seamless(src: Path, dst: Path, overlap: Overlap = 0.25) -> None:
     """Reads image from `src` file, converts it to seamless tile and saves
@@ -149,8 +151,7 @@ def image_to_seamless(src: Image, overlap: Overlap = 0.25) -> Image:
     return result
 
 
-def _float_or_index(dynamic: Overlap,
-                    idx: int) -> float:
+def _float_or_index(dynamic: Overlap, idx: int) -> float:
     if isinstance(dynamic, float):
         return dynamic
     else:
