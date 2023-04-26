@@ -1,8 +1,9 @@
-# SPDX-FileCopyrightText: (c) 2021 Artsiom iG <github.com/rtmigo>
+# SPDX-FileCopyrightText: (c) 2021 Artёm iG <github.com/rtmigo>
 # SPDX-License-Identifier: MIT
+import warnings
 from math import floor
 from pathlib import Path
-from typing import Tuple
+from typing import Tuple, Union
 
 from ._common import Image  # importing with tweaked options
 
@@ -78,14 +79,14 @@ class Mixer:
             (0, 0, self.horizontal_stripe_width, self.src_height))
 
     def _right_stripe_image(self):
-        return self.source.crop(
-            (self.src_width - self.horizontal_stripe_width, 0,
-             self.src_width, self.src_height))
+        return self.source.crop((
+            self.src_width - self.horizontal_stripe_width, 0, self.src_width,
+            self.src_height))
 
     def _bottom_stripe_image(self):
-        return self.source.crop(
-            (0, self.src_height - self.vertical_stripe_height,
-             self.src_width, self.src_height))
+        return self.source.crop((
+            0, self.src_height - self.vertical_stripe_height, self.src_width,
+            self.src_height))
 
     def _to_rgba(self, image: Image) -> Image:
         if image.mode != 'RGBA':
@@ -102,13 +103,10 @@ class Mixer:
         overlay = Image.new('RGBA', size=self.source.size, color=0x00)
         overlay.paste(stripe, box=(0, 0))
 
-        comp = Image.alpha_composite(self._to_rgba(self.source),
-                                     overlay)
+        comp = Image.alpha_composite(self._to_rgba(self.source), overlay)
 
-        comp = comp.crop((0,
-                          0,
-                          comp.size[0] - self.horizontal_stripe_width,
-                          comp.size[1]))
+        comp = comp.crop(
+            (0, 0, comp.size[0] - self.horizontal_stripe_width, comp.size[1]))
         return comp
 
     def make_seamless_v(self) -> Image:
@@ -119,22 +117,49 @@ class Mixer:
         overlay = Image.new('RGBA', size=self.source.size, color=0x00)
         overlay.paste(stripe, box=(0, 0))
 
-        comp = Image.alpha_composite(self._to_rgba(self.source),
-                                     overlay)
+        comp = Image.alpha_composite(self._to_rgba(self.source), overlay)
 
-        comp = comp.crop((0,
-                          0,
-                          comp.size[0],
-                          comp.size[1] - self.vertical_stripe_height))
+        comp = comp.crop(
+            (0, 0, comp.size[0], comp.size[1] - self.vertical_stripe_height))
         return comp
 
 
 def img2tex(src: Path, dst: Path, pct=0.25):
-    mixer1 = Mixer(Image.open(src), pct=pct)
+    warnings.warn("Replaced by `file_to_seamless`", DeprecationWarning,
+                  stacklevel=2)
+    file_to_seamless(src, dst, overlap=pct)
+
+Overlap = Union[float, Tuple[float, float]]
+
+def file_to_seamless(src: Path, dst: Path, overlap: Overlap = 0.25) -> None:
+    """Reads image from `src` file, converts it to seamless tile and saves
+    to `dst` file."""
+    image_to_seamless(Image.open(src), overlap=overlap).save(dst)
+
+
+def image_to_seamless(src: Image, overlap: Overlap = 0.25) -> Image:
+    """Converts `PIL.Image` to seamless `PIL.Image`."""
+    mixer1 = Mixer(src, pct=_horizontal_overlap(overlap))
     result = mixer1.make_seamless_h()
 
-    mixer2 = Mixer(result, pct=pct)
+    mixer2 = Mixer(result, pct=_vertical_overlap(overlap))
     result = mixer2.make_seamless_v()
     if result.mode != "RGB":
         result = result.convert("RGB")
-    result.save(dst)
+    return result
+
+
+def _float_or_index(dynamic: Overlap,
+                    idx: int) -> float:
+    if isinstance(dynamic, float):
+        return dynamic
+    else:
+        return dynamic[idx]
+
+
+def _horizontal_overlap(overlaps: Overlap) -> float:
+    return _float_or_index(overlaps, 0)
+
+
+def _vertical_overlap(overlaps: Overlap) -> float:
+    return _float_or_index(overlaps, 1)

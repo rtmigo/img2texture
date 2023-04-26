@@ -23,11 +23,12 @@ setup(
     name=name,
     version=constants['__version__'],
 
-    author="Artsiom iG",
+    author="Artёm iG",
     author_email="ortemeo@gmail.com",
     url='https://github.com/rtmigo/img2texture#readme',
 
     packages=find_packages(include=[name, f'{name}.*']),
+    package_data={name: ["py.typed"]},
 
     python_requires='>=3.7, <4',
     install_requires=["pillow>=9.2, <10"],
