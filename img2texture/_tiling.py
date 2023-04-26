@@ -3,7 +3,7 @@
 
 from pathlib import Path
 
-from ._common import Image  # importing with tweaked options
+from PIL import Image
 
 
 def tile(source: Path, target: Path,

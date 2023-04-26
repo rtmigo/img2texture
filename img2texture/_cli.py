@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: (c) 2021 Artёm iG <github.com/rtmigo>
+# SPDX-License-Identifier: MIT
+
 import argparse
 import os
 import sys
@@ -120,8 +123,8 @@ def cli():
 
     # preventing exception "Image.DecompressionBombError: Image size (324000000
     # pixels) exceeds limit of 178956970 pixels, could be decompression bomb DOS
-    # attack". In case of CLI we are not expecting attacks. Just processing
-    # large files
+    # attack". In case of CLI we are not expecting attacks: CLI user probably
+    # converting their own images. So we'll turn off this check for CLI
     Image.MAX_IMAGE_PIXELS = None
 
     try:
