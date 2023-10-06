@@ -30,6 +30,7 @@ def _test():
 def test_pkg():
     with Package() as pkg:
         pkg.run_shell_code('img2texture --version')
+
         # running console_scripts defined in setup.py
         pkg.run_shell_code('img2texture --help')
         pkg.run_shell_code('img2texture', expected_return_code=2)
