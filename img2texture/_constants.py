@@ -1,4 +1,4 @@
-__version__ = "1.1.2"
+__version__ = "1.1.2.post1"
 
 __copyright__ = "(c) Arte:m iG <ortemeo@gmail.com>"
 __license__ = "MIT"
