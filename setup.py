@@ -53,6 +53,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Environment :: Console",
         "Typing :: Typed",
         "Topic :: Scientific/Engineering :: Image Processing",
