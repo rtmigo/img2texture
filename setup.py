@@ -31,7 +31,7 @@ setup(
     package_data={name: ["py.typed"]},
 
     python_requires='>=3.7, <4',
-    install_requires=["pillow>=9.2, <10"],
+    install_requires=["pillow>=10.0.1"],  # fixing libwebp CVE-2023-4863
 
     description="Command line utility for converting images to seamless tiles.",
     long_description=readme,
