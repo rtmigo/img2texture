@@ -1,5 +1,5 @@
 [![PyPI version shields.io](https://img.shields.io/pypi/v/img2texture.svg)](https://pypi.python.org/pypi/img2texture/)
-[![Generic badge](https://img.shields.io/badge/Python-3.7+-blue.svg)](#)
+[![Generic badge](https://img.shields.io/badge/Python-3.8+-blue.svg)](#)
 [![Generic badge](https://img.shields.io/badge/OS-Windows%20|%20macOS%20|%20Linux-blue.svg)](#)
 [![Downloads](https://pepy.tech/badge/img2texture/month)](https://pepy.tech/project/img2texture)
 
