@@ -44,9 +44,9 @@ jobs:
         python-version: [ '3.8', '3.11', '3.12' ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -89,7 +89,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -121,7 +121,7 @@ jobs:
     needs: [ to-staging, master-flag ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # UPDATE MASTER BRANCH
       - name: Merge to master branch
@@ -134,25 +134,46 @@ jobs:
   to-pypi:
     needs: [ to-master, pypi-flag ]
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      # ADD PYPI RELEASE
+#      - name: Set up Python
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.x'
+#      - name: Install dependencies
+#        run: |
+#          python -m pip install --upgrade pip
+#          pip install setuptools wheel twine
+#      - name: Build and publish
+#        env:
+#          TWINE_USERNAME: ${{ secrets.PYPI_USR }}
+#          TWINE_PASSWORD: ${{ secrets.PYPI_PWD }}
+#        run: |
+#          python setup.py sdist bdist_wheel
+#          twine upload dist/*
 
-      # ADD PYPI RELEASE
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install setuptools wheel twine
-      - name: Build and publish
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USR }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PWD }}
-        run: |
-          python setup.py sdist bdist_wheel
-          twine upload dist/*
+#    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/img2texture
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python  # do we really need this?
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Install dependencies  # do we really need this?
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine
+        python setup.py sdist bdist_wheel
+    - name: Publish package distributions to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
   
 
   to-github-release:
